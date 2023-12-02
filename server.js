@@ -3,6 +3,7 @@ const connect = require("./connectDB")
 const ContactUsRouter = require("./ContactUs/Router")
 const DestiantionRouter = require("./Destination/Router")
 const JadwalTiketRouter = require("./JadwalTiket/Router")
+const TicketRouter = require("./Ticket/Router")
 
 const app = express();
 app.use(express.json())
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 app.use("/",ContactUsRouter)
 app.use("/",DestiantionRouter)
 app.use("/",JadwalTiketRouter)
+app.use("/",TicketRouter)
 
 //Listen
 app.listen(port,() => {

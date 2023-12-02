@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.post('/ContactUs',async (req, res) => {
     const data = await table.create({
-        Name : req.body.Email,
+        Name : req.body.Name,
         Email : req.body.Email,
         Message : req.body.Message
       })
