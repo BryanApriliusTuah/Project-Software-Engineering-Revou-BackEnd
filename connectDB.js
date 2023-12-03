@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('backend', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql' /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+const sequelize = new Sequelize('railway', 'root', 'e-F-bbAG-HD5BhBd1c3B1HfGBe-GceaF', {
+    host: 'monorail.proxy.rlwy.net',
+    dialect: 'mysql',
+    port: 35381
     }
 );
 const connect = async () => {
