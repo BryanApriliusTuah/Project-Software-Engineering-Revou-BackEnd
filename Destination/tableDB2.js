@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = require('../connectDB');
 
-const Destination2 = sequelize.sequelize.define('pesan_ticket_destination', {
+const Destination2 = sequelize.sequelize.define('pesan_ticket_destination2', {
   // Model attributes are defined here
   id: {
     type: Sequelize.INTEGER,
@@ -13,16 +13,28 @@ const Destination2 = sequelize.sequelize.define('pesan_ticket_destination', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  rating: {
+  gambar: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  gambar: {
+  checkin: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  checkout: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  room: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  pay: {
     type: DataTypes.STRING,
     allowNull: false
   }
 }, {
-    tableName : 'pesan_ticket_destination',
+    tableName : 'pesan_ticket_destination2',
     timestamps:false
 });
 

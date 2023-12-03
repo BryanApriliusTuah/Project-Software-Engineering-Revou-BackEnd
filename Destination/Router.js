@@ -12,7 +12,11 @@ router.post("/Destination",async (req, res) => {
     const data = await table2.create({
         nama : req.body.nama,
         rating : req.body.rating,
-        gambar : req.body.gambar
+        gambar : req.body.gambar,
+        checkin : req.body.checkin,
+        checkout : req.body.checkout,
+        room : req.body.room,
+        pay : req.body.pay
       })
 
     res.send(data)
