@@ -4,7 +4,7 @@ const sequelize = require('../connectDB');
 
 const Jadwal_Tiket = sequelize.sequelize.define('jadwal_tiket', {
   // Model attributes are defined here
-  JadwalTiket_Id: {
+  JadwalTicket_Id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
