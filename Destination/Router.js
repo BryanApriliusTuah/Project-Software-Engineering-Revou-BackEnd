@@ -4,8 +4,14 @@ const table2 = require("./tableDB2")
 const router = express.Router()
 
 router.get('/Destination',async (req, res) => {
-    const data = await table.findAll()
-    res.send(data)
+    const { count, rows } = await table.findAndCountAll({
+        where : {
+            kota : req.query.kota
+        }
+    })
+    res.send(rows)
+    // const data = await table.findAll()
+    // res.send(data)
 })
 
 router.post("/Destination",async (req, res) => {

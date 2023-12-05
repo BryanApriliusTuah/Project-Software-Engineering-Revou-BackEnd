@@ -20,6 +20,10 @@ const Destination = sequelize.sequelize.define('destination', {
   Gambar: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  kota: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }, {
     tableName : 'destination',
