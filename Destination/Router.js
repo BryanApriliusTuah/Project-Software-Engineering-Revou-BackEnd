@@ -10,8 +10,6 @@ router.get('/Destination',async (req, res) => {
         }
     })
     res.send(rows)
-    // const data = await table.findAll()
-    // res.send(data)
 })
 
 router.post("/Destination",async (req, res) => {
