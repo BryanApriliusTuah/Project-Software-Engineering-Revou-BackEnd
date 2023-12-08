@@ -12,6 +12,15 @@ router.get('/Destination',async (req, res) => {
     res.send(rows)
 })
 
+router.get('/DestinationHarga',async (req, res) => {
+    const { count, rows } = await table.findAndCountAll({
+        where : {
+            Destinasi : req.query.Destinasi
+        }
+    })
+    res.send(rows)
+})
+
 router.post("/Destination",async (req, res) => {
     const data = await table2.create({
         nama : req.body.nama,
