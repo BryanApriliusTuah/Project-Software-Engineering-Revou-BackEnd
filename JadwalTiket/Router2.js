@@ -12,3 +12,5 @@ router.get('/JadwalTiket2', async (req, res) => {
     console.log("If 1")
     res.send(rows)
 })
+
+module.exports = router
