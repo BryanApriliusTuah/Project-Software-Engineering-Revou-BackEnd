@@ -1,15 +1,22 @@
 const express = require('express')
 const table = require("./tableDB")
+const {Op} = require("sequelize")
 const router = express.Router()
 
 router.get('/JadwalTiket', async (req, res) => {
+    const Dari = req.query.Dari
+    const Ke = req.query.Ke
+    const Jam = req.query.Waktu_Berangkat
+    const pesawat = req.query.Jenis_Pesawat
+    const kelas = req.query.Kelas
+
     if(
-        (req.query.Dari === "") && (req.query.Ke === "") && (req.query.Waktu_Berangkat === "")
+        (Dari === "") && (Ke === "") && (Jam === "")
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Kelas : req.query.Kelas
+                Jenis_Pesawat : pesawat,
+                Kelas : kelas
             }
         })
         console.log("If 1")
@@ -17,25 +24,25 @@ router.get('/JadwalTiket', async (req, res) => {
     }
     
     else if(
-        (req.query.Ke === "") && (req.query.Waktu_Berangkat === "")
+        (req.query.Ke === "") && (Jam === "")
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Dari : req.query.Dari,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Kelas : req.query.Kelas
+                Dari : {[Op.like] : `%${Dari}%`},
+                Jenis_Pesawat : pesawat,
+                Kelas : kelas
             }
         })
         console.log("If 2")
         res.send(rows)
     }else if(
-        (req.query.Dari === "") && (req.query.Waktu_Berangkat === "")
+        (Dari === "") && (Jam === "")
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Ke : req.query.Ke,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Kelas : req.query.Kelas
+                Ke : {[Op.like] : `%${Ke}%`},
+                Jenis_Pesawat : pesawat,
+                Kelas : kelas
             }
         })
         console.log("If 3")
@@ -43,53 +50,53 @@ router.get('/JadwalTiket', async (req, res) => {
     }
     
     else if(
-        (req.query.Dari === "") && (req.query.Ke === "")
+        (Dari === "") && (Ke === "")
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Waktu_Berangkat : req.query.Waktu_Berangkat,
-                Kelas : req.query.Kelas
+                Jenis_Pesawat : pesawat,
+                Waktu_Berangkat : Jam,
+                Kelas : kelas
             }
         })
         console.log("If 4")
         res.send(rows)
     }
     else if(
-        req.query.Ke === ""
+        Ke === ""
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Dari : req.query.Dari,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Waktu_Berangkat : req.query.Waktu_Berangkat,
-                Kelas : req.query.Kelas
+                Dari : {[Op.like] : `%${Dari}%`},
+                Jenis_Pesawat : pesawat,
+                Waktu_Berangkat : Jam,
+                Kelas : kelas
             }
         })
         console.log("If 5")
         res.send(rows)
     } else if(
-        req.query.Waktu_Berangkat === ""
+        Jam === ""
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Dari : req.query.Dari,
-                Ke : req.query.Ke,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Kelas : req.query.Kelas
+                Dari : {[Op.like] : `%${Dari}%`},
+                Ke : {[Op.like] : `%${Ke}%`},
+                Jenis_Pesawat : pesawat,
+                Kelas : kelas
             }
         })
         console.log("If 6")
         res.send(rows)
     } else if(
-        req.query.Dari === ""
+        Dari === ""
     ){
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Ke : req.query.Ke,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Waktu_Berangkat : req.query.Waktu_Berangkat,
-                Kelas : req.query.Kelas
+                Ke : {[Op.like] : `%${Ke}%`},
+                Jenis_Pesawat : pesawat,
+                Waktu_Berangkat : Jam,
+                Kelas : kelas
             }
         })
         console.log("IF 7")
@@ -97,11 +104,11 @@ router.get('/JadwalTiket', async (req, res) => {
     }else{
         const { count, rows } = await table.findAndCountAll({
             where : {
-                Dari : req.query.Dari,
-                Ke : req.query.Ke,
-                Waktu_Berangkat : req.query.Waktu_Berangkat,
-                Jenis_Pesawat : req.query.Jenis_Pesawat,
-                Kelas : req.query.Kelas
+                Dari : {[Op.like] : `%${Dari}%`},
+                Ke : {[Op.like] : `%${Ke}%`},
+                Waktu_Berangkat : Jam,
+                Jenis_Pesawat : pesawat,
+                Kelas : kelas
             }
         })
         console.log("Else")
