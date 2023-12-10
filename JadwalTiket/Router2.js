@@ -4,9 +4,10 @@ const {Op} = require("sequelize")
 const router = express.Router()
 
 router.get('/JadwalTiket2', async (req, res) => {
+    const Dari = req.query.Dari
     const { count, rows } = await table.findAndCountAll({
         where : {
-            Dari: {[Op.like] : "%Soekarno%"}
+            Dari: {[Op.like] : `%${Dari}%`}
         }
     })
     console.log("If 1")
