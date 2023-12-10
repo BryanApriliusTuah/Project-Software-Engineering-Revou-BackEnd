@@ -94,6 +94,18 @@ router.get('/JadwalTiket', async (req, res) => {
         })
         console.log("IF 7")
         res.send(rows)
+    }else{
+        const { count, rows } = await table.findAndCountAll({
+            where : {
+                Dari : req.query.Dari,
+                Ke : req.query.Ke,
+                Waktu_Berangkat : req.query.Waktu_Berangkat,
+                Jenis_Pesawat : req.query.Jenis_Pesawat,
+                Kelas : req.query.Kelas
+            }
+        })
+        console.log("Else")
+        res.send(rows)
     }
 
 })
